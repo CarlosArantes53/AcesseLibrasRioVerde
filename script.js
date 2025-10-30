@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const localVideo = document.getElementById('local-video');
     const remoteVideoContainer = document.getElementById('remote-video-container');
     const callRingingStatus = document.getElementById('call-ringing-status');
-    const remoteImage = document.getElementById('remote-image');
+    const remoteImage = document.getElementById('remote-video');
     const interpreterName = document.getElementById('interpreter-name');
 
     // --- Elementos do Chat (sem mudança na lógica) ---
@@ -89,53 +89,53 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     async function startCall() {
-        isCallActive = true;
-        btnCall.textContent = "Cancelar Chamada";
-        btnCall.classList.add('active');
-        callStatus.textContent = "Iniciando câmera...";
-        callStatus.className = 'call-status calling';
+    isCallActive = true;
+    btnCall.textContent = "Cancelar Chamada";
+    btnCall.classList.add('active');
+    callStatus.textContent = "Iniciando câmera...";
+    callStatus.className = 'call-status calling';
 
-        try {
-            // 1. Pedir permissão e ligar a webcam local
-            localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-            videoArea.classList.remove('hidden');
-            localVideo.srcObject = localStream;
+    try {
+        localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
 
-            // 2. Mostrar status "Ligando" para o intérprete
-            callStatus.textContent = "Ligando para intérprete...";
-            callRingingStatus.classList.remove('hidden');
-            remoteImage.classList.add('hidden');
-            interpreterName.classList.add('hidden');
+        videoArea.classList.remove('hidden');
+        localVideo.srcObject = localStream;
 
-            // 3. Simular o atendimento após 5 segundos
-            callTimeout = setTimeout(() => {
-                if (!isCallActive) return; // Se o usuário cancelou, não atende
+        callStatus.textContent = "Ligando para intérprete...";
+        if (callRingingStatus) callRingingStatus.classList.remove('hidden');
 
-                // "Chamada atendida"
-                callStatus.textContent = "Conectado com Intérprete Neo.";
-                callStatus.className = 'call-status connected';
-                btnCall.textContent = "Encerrar Chamada";
+        // proteções adicionais
+        if (remoteImage) remoteImage.classList.add('hidden');
+        if (interpreterName) interpreterName.classList.add('hidden');
 
-                // Mostrar imagem e nome do intérprete "Neo"
-                callRingingStatus.classList.add('hidden');
-                
-                // Use uma imagem de placeholder para o Neo
-                // (Troque pelo caminho da imagem no seu repositório)
+        callTimeout = setTimeout(() => {
+            if (!isCallActive) return;
+
+            callStatus.textContent = "Conectado com Intérprete Neo.";
+            callStatus.className = 'call-status connected';
+            btnCall.textContent = "Encerrar Chamada";
+
+            if (callRingingStatus) callRingingStatus.classList.add('hidden');
+
+            if (remoteImage) {
                 remoteImage.src = "https://via.placeholder.com/400x300/3498db/ffffff?text=Neo";
                 remoteImage.classList.remove('hidden');
-                
+            }
+            if (interpreterName) {
                 interpreterName.textContent = "Neo (Intérprete)";
                 interpreterName.classList.remove('hidden');
+            }
 
-            }, 5000); // 5 segundos, como solicitado
+        }, 5000);
 
-        } catch (error) {
-            console.error("Erro ao acessar a webcam:", error);
-            callStatus.textContent = "Erro: Não foi possível acessar a câmera.";
-            callStatus.className = 'call-status error'; // Adicione um estilo .error se desejar
-            endCall(); // Reseta o estado
-        }
+    } catch (error) {
+        console.error("Erro ao acessar a webcam:", error);
+        callStatus.textContent = "Erro: Não foi possível acessar a câmera.";
+        callStatus.className = 'call-status error';
+        endCall();
     }
+}
+
 
     function endCall() {
         isCallActive = false;

@@ -1,0 +1,325 @@
+/* --- Variáveis de Cor (Paleta) --- */
+:root {
+    --primary-blue: #005a9c;
+    --primary-green: #28a745;
+    --accent-red: #dc3545;
+    --neutral-light: #f8f9fa;
+    --neutral-white: #ffffff;
+    --neutral-gray: #dee2e6;
+    --text-dark: #212529;
+    --text-light: #6c757d;
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* --- Reset Básico e Estilos Globais --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--neutral-light);
+    color: var(--text-dark);
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.hidden {
+    display: none !important; /* Classe utilitária para esconder elementos */
+}
+
+/* --- ============================ --- */
+/* --- ESTILOS DE AUTENTICAÇÃO      --- */
+/* --- ============================ --- */
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.auth-box {
+    background: var(--neutral-white);
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.logo-auth {
+    height: 60px;
+    margin-bottom: 20px;
+}
+
+.auth-box h2 {
+    color: var(--primary-blue);
+    margin-bottom: 10px;
+}
+
+.auth-box p {
+    color: var(--text-light);
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid var(--neutral-gray);
+    border-radius: 8px;
+}
+
+.btn-auth {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: var(--primary-blue);
+    color: white;
+    margin-top: 10px;
+}
+
+.auth-toggle {
+    margin-top: 20px;
+    font-size: 0.9rem;
+}
+
+.auth-toggle a {
+    color: var(--primary-blue);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* --- ============================ --- */
+/* --- ESTILOS DA APLICAÇÃO         --- */
+/* --- ============================ --- */
+
+header {
+    background-color: var(--neutral-white);
+    border-bottom: 1px solid var(--neutral-gray);
+    padding: 10px 0;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+}
+
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    height: 50px;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--primary-blue);
+}
+
+.btn-logout {
+    background: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* --- Conteúdo Principal --- */
+main {
+    flex-grow: 1;
+}
+
+.service-card {
+    background-color: var(--neutral-white);
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--neutral-gray);
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* --- ============================ --- */
+/* --- NOVA ÁREA DE VÍDEO           --- */
+/* --- ============================ --- */
+.video-area {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    background: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3; /* Proporção do vídeo */
+}
+
+#local-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1); /* Espelha a webcam local */
+}
+
+#remote-video-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #2c3e50; /* Cor escura para o placeholder */
+}
+
+.video-placeholder {
+    color: white;
+    text-align: center;
+}
+
+/* Animação de "Ligando" */
+.video-placeholder.ringing i {
+    font-size: 2rem;
+    animation: pulse 1.5s infinite ease-in-out;
+}
+.video-placeholder.ringing span {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.1rem;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.7; }
+}
+
+#remote-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-label {
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+/* --- Status da Chamada e Botões --- */
+.btn-call {
+    background-color: var(--primary-green);
+    color: white;
+}
+.btn-call.active {
+    background-color: var(--accent-red);
+}
+
+.call-status {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+}
+/* ... (outros estilos de call-status) ... */
+
+
+/* --- ============================ --- */
+/* --- SEÇÃO DO CHAT (SEM MUDANÇAS) --- */
+/* --- ============================ --- */
+.chat-window {
+    height: 250px;
+    border: 1px solid var(--neutral-gray);
+    /* ... (restante do CSS do chat) ... */
+    padding: 15px;
+    overflow-y: auto;
+    background-color: #fdfdfd;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.message { padding: 10px 14px; border-radius: 12px; max-width: 80%; line-height: 1.4; }
+.bot-message { background-color: var(--neutral-light); color: var(--text-dark); border-top-left-radius: 0; align-self: flex-start; }
+.user-message { background-color: var(--primary-blue); color: white; border-top-right-radius: 0; align-self: flex-end; }
+.chat-input-area { display: flex; gap: 10px; }
+#chat-input { flex-grow: 1; border: 1px solid var(--neutral-gray); border-radius: 8px; padding: 12px; font-size: 1rem; }
+#chat-input:focus { outline: none; border-color: var(--primary-blue); }
+.btn-send { background-color: var(--primary-blue); color: white; padding: 10px 20px; font-size: 1rem; width: auto; flex-shrink: 0; border: none; border-radius: 8px; cursor: pointer;}
+
+
+/* --- Rodapé --- */
+footer { text-align: center; padding: 20px 0; background-color: var(--neutral-white); border-top: 1px solid var(--neutral-gray); margin-top: 20px; }
+footer p { margin: 0; color: var(--text-light); font-size: 0.9rem; }
+
+/* --- Responsividade --- */
+@media (max-width: 600px) {
+    .auth-box { padding: 20px; }
+    .header-content { flex-direction: column; gap: 10px; text-align: center; }
+    h1 { font-size: 1.2rem; }
+    .logo { height: 40px; }
+    .container { width: 95%; }
+    .service-card { padding: 20px; }
+
+    /* Ajusta o vídeo para layout de coluna em telas pequenas */
+    .video-area {
+        grid-template-columns: 1fr;
+    }
+}

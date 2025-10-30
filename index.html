@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesse Libras Rio Verde</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="login-page" class="auth-container">
+        <div class="auth-box">
+            <img src="logo.png" alt="Brasão Rio Verde" class="logo-auth">
+            <h2>Login</h2>
+            <p>Acesse sua conta para continuar.</p>
+            <form id="login-form">
+                <div class="input-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" required>
+                </div>
+                <div class="input-group">
+                    <label for="login-password">Senha</label>
+                    <input type="password" id="login-password" required>
+                </div>
+                <button type="submit" class="btn btn-auth">Entrar</button>
+            </form>
+            <p class="auth-toggle">Não tem uma conta? <a href="#" id="show-register">Cadastre-se</a></p>
+        </div>
+    </div>
+
+    <div id="register-page" class="auth-container hidden">
+        <div class="auth-box">
+            <img src="logo.png" alt="Brasão Rio Verde" class="logo-auth">
+            <h2>Cadastro</h2>
+            <p>Crie sua conta para acessar os serviços.</p>
+            <form id="register-form">
+                <div class="input-group">
+                    <label for="register-name">Nome Completo</label>
+                    <input type="text" id="register-name" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" required>
+                </div>
+                <div class="input-group">
+                    <label for="register-password">Senha</label>
+                    <input type="password" id="register-password" required>
+                </div>
+                <button type="submit" class="btn btn-auth">Cadastrar</button>
+            </form>
+            <p class="auth-toggle">Já tem uma conta? <a href="#" id="show-login">Faça Login</a></p>
+        </div>
+    </div>
+
+    <div id="app-page" class="hidden">
+        <header>
+            <div class="container header-content">
+                <div class="logo-title">
+                    <img src="logo.png" alt="Brasão Rio Verde" class="logo">
+                    <h1>Acesse Libras Rio Verde</h1>
+                </div>
+                <button id="btn-logout" class="btn-logout">Sair</button>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="welcome-message">
+                <h2>Olá! Como podemos ajudar hoje?</h2>
+                <p>Selecione um serviço abaixo.</p>
+            </div>
+
+            <div class="service-card" id="video-call-card">
+                <h3>Chamada de Emergência</h3>
+                
+                <div class="video-area hidden" id="video-area">
+                    <div class="video-wrapper">
+                        <video id="local-video" autoplay muted playsinline></video>
+                        <span class="video-label">Você</span>
+                    </div>
+                    <div class="video-wrapper" id="remote-video-container">
+                        <div id="call-ringing-status" class="video-placeholder ringing">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Ligando...</span>
+                        </div>
+                        <img id="remote-image" class="hidden" alt="Intérprete Neo">
+                        <span id="interpreter-name" class="video-label hidden"></span>
+                    </div>
+                </div>
+
+                <div id="call-status" class="call-status"></div>
+                
+                <button id="btn-call" class="btn btn-call">
+                    <span class="icon">📞</span> Chamar Intérprete
+                </button>
+            </div>
+
+            <div class="service-card" id="chat-card">
+                <h3>Chat Rápido com IA</h3>
+                <div class="chat-window" id="chat-window">
+                    <div class="message bot-message">
+                        <strong>Assistente IA:</strong> Olá! Estou pronto para ajudar.
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Digite sua mensagem..." aria-label="Mensagem do chat">
+                    <button id="btn-send" class="btn btn-send">Enviar</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                <p>© 2025 - Prefeitura de Rio Verde (GO)</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

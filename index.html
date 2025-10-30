@@ -15,9 +15,12 @@
             <h2>Login</h2>
             <form id="login-form">
                 <div class="input-group">
-                    <label for="login-email">Email</label>
+                <label for="login-email">Email</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope"></i>
                     <input type="email" id="login-email" required>
                 </div>
+            </div>
                 <div class="input-group">
                     <label for="login-password">Senha</label>
                     <input type="password" id="login-password" required>
@@ -102,17 +105,18 @@
                 </div>
                 <div class="chat-input-area">
                     <input type="text" id="chat-input" placeholder="Digite sua mensagem..." aria-label="Mensagem do chat">
-                    <button id="btn-send" class="btn btn-send">Enviar</button>
+                    <button id="btn-send" class="btn btn-send" aria-label="Enviar mensagem">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
         </main>
 
-        <footer>
-            <div class="container">
-                <p>© 2025 - Prefeitura de Rio Verde (GO)</p>
-            </div>
-        </footer>
-    </div>
+        </div> <footer>
+        <div class="container">
+                <p>© 2025 - Acesse Libras AI | Prefeitura de Rio Verde (GO)</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>

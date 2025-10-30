@@ -1,6 +1,6 @@
-/* --- Variáveis de Cor (Paleta) --- */
 :root {
     --primary-blue: #005a9c;
+    --primary-teal: #33c1ba;
     --primary-green: #28a745;
     --accent-red: #dc3545;
     --neutral-light: #f8f9fa;
@@ -11,15 +11,14 @@
     --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* --- Reset Básico e Estilos Globais --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     line-height: 1.6;
     background-color: var(--neutral-light);
     color: var(--text-dark);
@@ -34,12 +33,9 @@ body {
 }
 
 .hidden {
-    display: none !important; /* Classe utilitária para esconder elementos */
+    display: none !important;
 }
 
-/* --- ============================ --- */
-/* --- ESTILOS DE AUTENTICAÇÃO      --- */
-/* --- ============================ --- */
 
 .auth-container {
     display: flex;
@@ -112,7 +108,19 @@ body {
     color: white;
     margin-top: 10px;
 }
-
+.btn-auth, 
+.btn-send {
+    background-color: var(--primary-teal);
+}
+.btn-send {
+    width: 50px;
+    flex-shrink: 0;
+    padding: 10px;
+}
+.btn-auth:hover, 
+.btn-send:hover {
+    background-color: #2b9e99;
+}
 .auth-toggle {
     margin-top: 20px;
     font-size: 0.9rem;
@@ -123,10 +131,19 @@ body {
     font-weight: bold;
     text-decoration: none;
 }
-
-/* --- ============================ --- */
-/* --- ESTILOS DA APLICAÇÃO         --- */
-/* --- ============================ --- */
+.input-with-icon {
+    position: relative;
+}
+.input-with-icon i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+}
+.input-with-icon input {
+    padding-left: 40px;
+}   
 
 header {
     background-color: var(--neutral-white);
@@ -167,7 +184,6 @@ h1 {
     cursor: pointer;
 }
 
-/* --- Conteúdo Principal --- */
 main {
     flex-grow: 1;
 }
@@ -178,9 +194,18 @@ main {
     padding: 25px;
     margin-bottom: 20px;
     box-shadow: var(--shadow);
-    border: 1px solid var(--neutral-gray);
+    border: 1px solid var(--neutral-gray);transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
 }
-
+.service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.service-card#video-call-card.in-call:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+    cursor: default;
+}
 .btn {
     display: block;
     width: 100%;
@@ -194,12 +219,9 @@ main {
     transition: background-color 0.2s ease, transform 0.1s ease;
 }
 
-/* --- ============================ --- */
-/* --- NOVA ÁREA DE VÍDEO           --- */
-/* --- ============================ --- */
 .video-area {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas */
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
     margin-bottom: 20px;
 }
@@ -210,21 +232,21 @@ main {
     background: #000;
     border-radius: 8px;
     overflow: hidden;
-    aspect-ratio: 4 / 3; /* Proporção do vídeo */
+    aspect-ratio: 4 / 3;
 }
 
 #local-video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transform: scaleX(-1); /* Espelha a webcam local */
+    transform: scaleX(-1);
 }
 
 #remote-video-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2c3e50; /* Cor escura para o placeholder */
+    background-color: #2c3e50;
 }
 
 .video-placeholder {
@@ -232,7 +254,6 @@ main {
     text-align: center;
 }
 
-/* Animação de "Ligando" */
 .video-placeholder.ringing i {
     font-size: 2rem;
     animation: pulse 1.5s infinite ease-in-out;
@@ -267,7 +288,6 @@ main {
     font-weight: bold;
 }
 
-/* --- Status da Chamada e Botões --- */
 .btn-call {
     background-color: var(--primary-green);
     color: white;
@@ -283,16 +303,10 @@ main {
     padding: 10px;
     border-radius: 8px;
 }
-/* ... (outros estilos de call-status) ... */
 
-
-/* --- ============================ --- */
-/* --- SEÇÃO DO CHAT (SEM MUDANÇAS) --- */
-/* --- ============================ --- */
 .chat-window {
     height: 250px;
     border: 1px solid var(--neutral-gray);
-    /* ... (restante do CSS do chat) ... */
     padding: 15px;
     overflow-y: auto;
     background-color: #fdfdfd;
@@ -309,12 +323,9 @@ main {
 #chat-input:focus { outline: none; border-color: var(--primary-blue); }
 .btn-send { background-color: var(--primary-blue); color: white; padding: 10px 20px; font-size: 1rem; width: auto; flex-shrink: 0; border: none; border-radius: 8px; cursor: pointer;}
 
-
-/* --- Rodapé --- */
 footer { text-align: center; padding: 20px 0; background-color: var(--neutral-white); border-top: 1px solid var(--neutral-gray); margin-top: 20px; }
 footer p { margin: 0; color: var(--text-light); font-size: 0.9rem; }
 
-/* --- Responsividade --- */
 @media (max-width: 600px) {
     .auth-box { padding: 20px; }
     .header-content { flex-direction: column; gap: 10px; text-align: center; }
@@ -322,9 +333,21 @@ footer p { margin: 0; color: var(--text-light); font-size: 0.9rem; }
     .logo { height: 40px; }
     .container { width: 95%; }
     .service-card { padding: 20px; }
-
-    /* Ajusta o vídeo para layout de coluna em telas pequenas */
     .video-area {
         grid-template-columns: 1fr;
     }
+}
+.typing-indicator span {
+    animation: blink 1.4s infinite both;
+}
+.typing-indicator span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.typing-indicator span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+@keyframes blink {
+    0% { opacity: 0.2; }
+    20% { opacity: 1; }
+    100% { opacity: 0.2; }
 }

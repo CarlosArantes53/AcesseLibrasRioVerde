@@ -1,109 +1,133 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesse Libras Rio Verde - Login</title>
-    <link rel="stylesheet" href="style.css"> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal Acessível - Autenticação</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-    <div id="login-page" class="auth-container">
-        <div class="auth-box">
-            <img src="logo.png" alt="Brasão Rio Verde" class="logo-auth">
-            <h2>Login do Usuário</h2>
-            <form id="login-form">
-                <div class="input-group">
-                <label for="login-email">Email</label>
-                <div class="input-with-icon">
-                    <i class="fas fa-envelope"></i>
-                    <input type="email" id="login-email" required>
-                </div>
-            </div>
-                <div class="input-group">
-                    <label for="login-password">Senha</label>
-                    <input type="password" id="login-password" required>
-                </div>
-                <button type="submit" class="btn btn-auth">Entrar</button>
-            </form>
-            <p class="auth-toggle">Não tem uma conta? <a href="#" id="show-register">Cadastre-se</a></p>
-            <p class="auth-toggle-interpreter"><a href="#" id="show-interpreter-login">Acessar como Intérprete</a></p>
-        </div>
+  <header role="banner">
+    <div class="container header-content" aria-label="Cabeçalho">
+      <div class="logo-title">
+        <img class="logo" src="logo.png" alt="Logo do Portal Acessível" />
+        <h1>Portal Acessível</h1>
+      </div>
     </div>
+  </header>
 
-    <div id="register-page" class="auth-container hidden">
-        <div class="auth-box">
-            <img src="logo.png" alt="Brasão Rio Verde" class="logo-auth">
-            <h2>Cadastro</h2>
-            <p>Crie sua conta para acessar os serviços.</p>
-            <form id="register-form">
-                <div class="input-group">
-                    <label for="register-name">Nome Completo</label>
-                    <input type="text" id="register-name" required>
-                </div>
-                <div class="input-group">
-                    <label for="register-email">Email</label>
-                    <input type="email" id="register-email" required>
-                </div>
-                <div class="input-group">
-                    <label for="register-cpf">CPF</label>
-                    <input type="text" id="register-cpf" placeholder="000.000.000-00" required>
-                </div>
-                <div class="input-group">
-                    <label for="register-endereco">Endereço Completo</label>
-                    <input type="text" id="register-endereco" placeholder="Ex: Rua, Número, Bairro" required>
-                </div>
-                <div class="input-group">
-                    <label for="register-cidade">Cidade</label>
-                    <input type="text" id="register-cidade" value="Rio Verde (GO)" readonly>
-                </div>
-                <div class="input-group">
-                <label for="register-disability">Qual sua principal necessidade? (Opcional)</label>
-                <div class="input-with-icon">
-                    <i class="fas fa-universal-access"></i>
-                    <select id="register-disability" style="width: 100%; padding: 12px; font-size: 1rem; border: 1px solid var(--neutral-gray); border-radius: 8px; padding-left: 40px; -webkit-appearance: none; -moz-appearance: none; appearance: none; background-color: white;">
-                        <option value="none">Prefiro não informar</option>
-                        <option value="deaf">Surdo / Deficiente Auditivo</option>
-                        <option value="blind">Cego / Baixa Visão</option>
-                        <option value="mute">Mudo</option>
-                        <option value="neuro">Neurodivergente</option>
-                        <option value="physical">Cadeirante / Mobilidade Reduzida</option>
-                    </select>
-                </div>
-            </div>
-                <div class="input-group">
-                    <label for="register-password">Senha</label>
-                    <input type="password" id="register-password" required>
-                </div>
-                <button type="submit" class="btn btn-auth">Cadastrar</button>
-            </form>
-            <p class="auth-toggle">Já tem uma conta? <a href="#" id="show-login">Faça Login</a></p>
+  <main id="conteudo" role="main" class="auth-container" tabindex="-1">
+    <section id="login-page" aria-labelledby="login-title" class="auth-box">
+      <h2 id="login-title">Entrar</h2>
+      <p>Use seu e-mail e senha para acessar.</p>
+
+      <div id="login-status" class="visually-hidden" role="status" aria-live="polite"></div>
+      <div id="login-error" class="visually-hidden" role="alert" aria-live="assertive"></div>
+
+      <form id="login-form" novalidate>
+        <div class="input-group">
+          <label for="login-email">E-mail</label>
+          <input id="login-email" name="login-email" type="email" inputmode="email" autocomplete="email" required aria-describedby="login-email-hint" />
+          <small id="login-email-hint">Digite seu e-mail cadastrado.</small>
         </div>
-    </div>
 
-    <div id="interpreter-login-page" class="auth-container hidden">
-        <div class="auth-box">
-            <img src="logo.png" alt="Brasão Rio Verde" class="logo-auth">
-            <h2>Login do Intérprete</h2>
-            <form id="interpreter-login-form">
-                <div class="input-group">
-                <label for="interpreter-login-email">Email (Intérprete)</label>
-                <div class="input-with-icon">
-                    <i class="fas fa-headset"></i>
-                    <input type="email" id="interpreter-login-email" required>
-                </div>
-            </div>
-                <div class="input-group">
-                    <label for="interpreter-login-password">Senha</label>
-                    <input type="password" id="interpreter-login-password" required>
-                </div>
-                <button type="submit" class="btn btn-auth">Entrar</button>
-            </form>
-            <p class="auth-toggle"><a href="#" id="show-user-login">Acessar como Usuário</a></p>
+        <div class="input-group">
+          <label for="login-password">Senha</label>
+          <input id="login-password" name="login-password" type="password" autocomplete="current-password" required aria-describedby="login-password-hint" />
+          <small id="login-password-hint">Sua senha possui ao menos 6 caracteres.</small>
         </div>
-    </div>
 
-    <script src="script.js"></script>
+        <button class="btn-auth" type="submit">Entrar</button>
+      </form>
+
+      <div class="auth-toggle">
+        <p>Não tem conta? <button id="show-register" type="button" class="linklike">Cadastre-se</button></p>
+      </div>
+
+      <div class="auth-toggle-interpreter" aria-label="Acesso para intérpretes">
+        <p>É intérprete? <button id="show-interpreter-login" type="button" class="linklike">Entrar como intérprete</button></p>
+      </div>
+    </section>
+
+    <section id="register-page" aria-labelledby="register-title" class="auth-box hidden">
+      <h2 id="register-title">Cadastro</h2>
+      <p>Crie sua conta de usuário.</p>
+
+      <div id="register-status" class="visually-hidden" role="status" aria-live="polite"></div>
+      <div id="register-error" class="visually-hidden" role="alert" aria-live="assertive"></div>
+
+      <form id="register-form" novalidate>
+        <div class="input-group">
+          <label for="register-name">Nome completo</label>
+          <input id="register-name" name="register-name" type="text" autocomplete="name" required />
+        </div>
+
+        <div class="input-group">
+          <label for="register-email">E-mail</label>
+          <input id="register-email" name="register-email" type="email" inputmode="email" autocomplete="email" required />
+        </div>
+
+        <div class="input-group">
+          <label for="register-password">Senha</label>
+          <input id="register-password" name="register-password" type="password" autocomplete="new-password" minlength="6" required />
+        </div>
+
+        <div class="input-group">
+          <label for="register-disability">Preferência de acessibilidade</label>
+          <select id="register-disability" name="register-disability" aria-describedby="register-disability-hint">
+            <option value="">Selecione (opcional)</option>
+            <option value="deaf">Surdez</option>
+            <option value="blind">Cegueira/Baixa visão</option>
+            <option value="physical">Deficiência física</option>
+            <option value="neuro">Neurodivergência</option>
+            <option value="mute">Mudez</option>
+            <option value="none">Nenhuma</option>
+          </select>
+          <small id="register-disability-hint">Usado para ajustar recursos visuais e de navegação.</small>
+        </div>
+
+        <button class="btn-auth" type="submit">Cadastrar</button>
+      </form>
+
+      <div class="auth-toggle">
+        <p>Já possui conta? <button id="show-login" type="button" class="linklike">Fazer login</button></p>
+      </div>
+    </section>
+
+    <section id="interpreter-login-page" aria-labelledby="interpreter-title" class="auth-box hidden">
+      <h2 id="interpreter-title">Login de Intérprete</h2>
+      <p>Acesso dedicado a profissionais intérpretes.</p>
+
+      <div id="interpreter-status" class="visually-hidden" role="status" aria-live="polite"></div>
+      <div id="interpreter-error" class="visually-hidden" role="alert" aria-live="assertive"></div>
+
+      <form id="interpreter-login-form" novalidate>
+        <div class="input-group">
+          <label for="interpreter-login-email">E-mail</label>
+          <input id="interpreter-login-email" name="interpreter-login-email" type="email" inputmode="email" autocomplete="email" required />
+        </div>
+
+        <div class="input-group">
+          <label for="interpreter-login-password">Senha</label>
+          <input id="interpreter-login-password" name="interpreter-login-password" type="password" autocomplete="current-password" required />
+        </div>
+
+        <button class="btn-auth" type="submit">Entrar como intérprete</button>
+      </form>
+
+      <div class="auth-toggle">
+        <p>Voltar ao login de usuário? <button id="show-user-login" type="button" class="linklike">Acessar</button></p>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>Prefeitura Municipal • Portal Acessível</p>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
 </body>
 </html>

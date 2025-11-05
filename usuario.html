@@ -1,214 +1,201 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesse Libras Rio Verde</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portal Acessível - Área do Usuário</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <header role="banner">
+    <div class="container header-content">
+      <div class="logo-title">
+        <img class="logo" src="logo.png" alt="Logo do Portal Acessível" />
+        <h1>Portal Acessível</h1>
+      </div>
 
-    <div id="app-page">
-        <header>
-            <div class="container header-content">
-        <div class="logo-title">
-            <img src="logo.png" alt="Brasão Rio Verde" class="logo">
-            <h1>Acesse Libras Rio Verde</h1>
-        </div>
-
-        <div class="accessibility-controls">
-            <button id="btn-decrease-font" title="Diminuir Fonte" aria-label="Diminuir Fonte">A-</button>
-            <button id="btn-increase-font" title="Aumentar Fonte" aria-label="Aumentar Fonte">A+</button>
-            <button id="btn-toggle-theme" title="Alternar Tema Claro/Escuro" aria-label="Alternar Tema Claro/Escuro">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button id="btn-photosensitive" title="Modo Fotossensível (Reduzir Animações)" aria-label="Modo Fotossensível">
-                <i class="fas fa-low-vision"></i>
-            </button>
-        </div>
-        <button id="btn-logout" class="btn-logout">Sair</button>
+      <div class="accessibility-controls" aria-label="Controles de acessibilidade">
+        <button id="btn-decrease-font" type="button" aria-label="Diminuir fonte">A-</button>
+        <button id="btn-increase-font" type="button" aria-label="Aumentar fonte">A+</button>
+        <button id="btn-toggle-theme" type="button" aria-label="Alternar tema">
+          <i class="fa fa-moon" aria-hidden="true"></i><span class="sr-only">Tema</span>
+        </button>
+        <button id="btn-photosensitive" type="button" aria-label="Reduzir animações">RM</button>
+        <button id="btn-logout" class="btn-logout" type="button">Sair</button>
+      </div>
     </div>
-            
-            <nav class="header-nav">
-                <div class="container nav-container">
-                    <button id="nav-inicio" class="nav-button-header active">
-                        <i class="fas fa-home"></i>
-                        <span>Início</span>
-                    </button>
-                    <button id="nav-servicos" class="nav-button-header">
-                        <i class="fas fa-concierge-bell"></i>
-                        <span>Serviços</span>
-                    </button>
-                    <button id="nav-informativos" class="nav-button-header">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Informativos</span>
-                    </button>
-                </div>
-            </nav>
-        </header>
 
-        <main class="container">
+    <nav class="header-nav" role="navigation" aria-label="Navegação principal">
+      <div class="container nav-container">
+        <button id="nav-home" class="nav-button-header active" type="button">
+          <i class="fa fa-home" aria-hidden="true"></i> Início
+        </button>
+        <button id="nav-services" class="nav-button-header" type="button">
+          <i class="fa fa-tools" aria-hidden="true"></i> Serviços
+        </button>
+        <button id="nav-info" class="nav-button-header" type="button">
+          <i class="fa fa-info-circle" aria-hidden="true"></i> Informativos
+        </button>
+      </div>
+    </nav>
+  </header>
 
-            <div id="page-inicio" class="page active">
-                
-                <div class="welcome-message"> 
-                    <h2>Olá! 🧏‍♂️🤟 Como podemos ajudar hoje?</h2> 
-                </div>
+  <main id="conteudo" role="main" class="container" tabindex="-1">
+    <section id="page-home" class="page active" aria-labelledby="home-title">
+      <div class="welcome-message">
+        <h2 id="home-title">Olá! Como podemos ajudar hoje?</h2>
+      </div>
 
-                <div class="service-card" id="emergency-card">
-                    <h3>Chamada de Emergência</h3>
-                    <p>Conecte-se com um intérprete de Libras agora.</p>
+      <article id="video-call-card" class="service-card" aria-labelledby="video-title">
+        <h3 id="video-title"><i class="fa fa-video" aria-hidden="true"></i> Chamada de Emergência</h3>
+        <p>Conecte-se com um intérprete de Libras agora.</p>
 
-                    <div class="video-area hidden" id="video-area">
-                        <div class="video-wrapper">
-                            <video id="local-video" autoplay muted playsinline></video>
-                            <span class="video-label">Você</span>
-                        </div>
-                        <div class="video-wrapper" id="remote-video-container">
-                            <div id="call-ringing-status" class="video-placeholder ringing">
-                                <i class="fas fa-phone-alt"></i>
-                                <span>Ligando...</span>
-                            </div>
-                            <img src="neo.jpeg" id="remote-image" class="hidden" alt="Intérprete Neo">
-                            <span id="interpreter-name" class="video-label hidden"></span>
-                        </div>
-                    </div>
+        <div id="call-status" class="call-status" role="status" aria-live="polite"></div>
 
-                    <div id="call-status" class="call-status"></div>
-                    
-                    <button id="btn-start-call" class="btn btn-call-start">
-                        <i class="fas fa-video"></i> Chamar Intérprete
-                    </button>
-                    <button id="btn-end-call" class="btn btn-call-end hidden">
-                        <i class="fas fa-phone-slash"></i> Encerrar Chamada
-                    </button>
-                </div>
+        <div id="video-area" class="video-area hidden" aria-label="Área de vídeo">
+          <div class="video-wrapper" aria-label="Seu vídeo">
+            <video id="local-video" autoplay playsinline muted aria-label="Prévia da sua câmera"></video>
+            <span class="video-label">Você</span>
+          </div>
 
-                <div class="service-card" id="chat-card">
-                    <h3>Chat Rápido com IA</h3>
-                    <div class="chat-window" id="chat-window">
-                        <div class="message bot-message">
-                            <strong>IDANA Rio Verde:</strong> Olá! Estou pronto para ajudar.
-                        </div>
-                    </div>
-                    <div class="chat-input-area">
-                        <input type="text" id="chat-input" placeholder="Digite sua mensagem..." aria-label="Mensagem do chat">
-                        <button id="btn-send" class="btn btn-send" aria-label="Enviar mensagem">
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
+          <div id="remote-video-container" class="video-wrapper" aria-label="Intérprete">
+            <div id="call-ringing-status" class="video-placeholder ringing" aria-hidden="true">
+              <i class="fa fa-phone" aria-hidden="true"></i>
+              <span>Chamando...</span>
             </div>
+            <img id="remote-image" class="hidden" src="interprete.jpg" alt="Intérprete conectado" />
+            <span class="video-label" id="interpreter-name">Intérprete</span>
+          </div>
+        </div>
 
-            <div id="page-servicos" class="page">
-                <h2>Serviços da Cidade</h2>
+        <div class="btn-row">
+          <button id="btn-start-call" class="btn btn-call-start" type="button">
+            <i class="fa fa-phone" aria-hidden="true"></i> Iniciar chamada
+          </button>
+          <button id="btn-end-call" class="btn btn-call-end hidden" type="button">
+            <i class="fa fa-phone-slash" aria-hidden="true"></i> Encerrar
+          </button>
+        </div>
+      </article>
 
-                <div class="service-card" id="report-problem-card">
-                    <h3><i class="fas fa-exclamation-triangle"></i> Relatar um Problema na Cidade</h3>
-                    <p>Encontrou um problema de acessibilidade? Nos informe.</p>
-                    <form id="problem-report-form">
-                        <div class="input-group">
-                            <label for="problem-type">Tipo de Problema</label>
-                            <select id="problem-type" required>
-                                <option value="">Selecione o tipo de problema...</option>
-                                <option value="rampa">Falta de Rampa de Acesso</option>
-                                <option value="interprete">Falta de Intérprete em Local Público</option>
-                                <option value="sinalizacao">Falta de Sinalização Acessível</option>
-                                <option value="buraco">Buraco na calçada/rua</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label for="problem-description">Descrição do Problema e Local</label>
-                            <textarea id="problem-description" rows="4" placeholder="Descreva o problema e o endereço..." required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar Relato</button>
-                    </form>
-                </div>
-    
-                <div class="service-card" id="schedule-card">
-                    <h3><i class="fas fa-calendar-alt"></i> Solicitação de Agenda de Intérpretes</h3>
-                    <p>Precisa de um intérprete para um compromisso?</p>
-                    <form id="schedule-form">
-                        <div class="input-group">
-                            <label for="schedule-local">Local do Atendimento</label>
-                            <input type="text" id="schedule-local" placeholder="Ex: Clínica da Vila, Fórum" required>
-                        </div>
-                        <div class="form-row">
-                            <div class="input-group">
-                                <label for="schedule-date">Data</label>
-                                <input type="date" id="schedule-date" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="schedule-time-from">Horário de Início</label>
-                                <input type="time" id="schedule-time-from" required>
-                            </div>
-                            <div class="input-group">
-                                <label for="schedule-time-to">Horário de Término</label>
-                                <input type="time" id="schedule-time-to" required>
-                            </div>
-                        </div>
-                        <div class="input-group">
-                            <label for="schedule-reason">Motivo da Solicitação</label>
-                            <textarea id="schedule-reason" rows="3" placeholder="Ex: Consulta médica" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Solicitar Agendamento</button>
-                    </form>
-                </div>
+      <article id="chat-card" class="service-card" aria-labelledby="chat-title">
+        <h3 id="chat-title"><i class="fa fa-comments" aria-hidden="true"></i> Chat Rápido com IA</h3>
+        <div id="chat-window" role="log" aria-live="polite" aria-relevant="additions" aria-atomic="false" class="chat-window"></div>
+        <div class="chat-input-area">
+          <label for="chat-input" class="sr-only">Mensagem</label>
+          <input id="chat-input" type="text" autocomplete="off" placeholder="Digite sua mensagem" />
+          <button id="btn-send" class="btn-send" type="button">Enviar</button>
+        </div>
+      </article>
+    </section>
+
+    <section id="page-services" class="page" aria-labelledby="services-title">
+      <h2 id="services-title">Serviços da Cidade</h2>
+
+      <article class="service-card" aria-labelledby="report-title">
+        <h3 id="report-title"><i class="fa fa-flag" aria-hidden="true"></i> Relatar um Problema na Cidade</h3>
+        <p>Encontrou um problema de acessibilidade? Nos informe.</p>
+
+        <div id="report-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+        <form id="problem-report-form" novalidate>
+          <div class="input-group">
+            <label for="report-title-input">Título do problema</label>
+            <input id="report-title-input" type="text" required />
+          </div>
+
+          <div class="input-group">
+            <label for="report-desc-input">Descrição</label>
+            <textarea id="report-desc-input" required></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Enviar relato</button>
+        </form>
+      </article>
+
+      <article class="service-card" aria-labelledby="schedule-title">
+        <h3 id="schedule-title"><i class="fa fa-calendar" aria-hidden="true"></i> Solicitação de Agenda de Intérpretes</h3>
+        <p>Precisa de um intérprete para um compromisso?</p>
+
+        <div id="schedule-status" class="visually-hidden" role="status" aria-live="polite"></div>
+
+        <form id="schedule-form" novalidate>
+          <div class="form-row">
+            <div class="input-group">
+              <label for="schedule-date">Data</label>
+              <input id="schedule-date" type="date" required />
             </div>
-
-            <div id="page-informativos" class="page">
-                <h2>Informativos</h2>
-                
-                <div class="service-card" id="courses-card">
-                    <h3><i class="fas fa-graduation-cap"></i> Cursos da Prefeitura</h3>
-                    <p>Capacitação profissional com acessibilidade.</p>
-                    <div class="course-list">
-                        <div class="course-item">
-                            <h4>Curso de Informática Básica</h4>
-                            <p class="course-description">Aprenda a usar o computador, internet e ferramentas de escritório.</p>
-                            <div class="accessibility-tags">
-                                <span class="tag tag-libras"><i class="fas fa-sign-language"></i> Libras</span>
-                                <span class="tag tag-audio"><i class="fas fa-audio-description"></i> Áudio Descrição</span>
-                            </div>
-                        </div>
-                        <div class="course-item">
-                            <h4>Curso de Atendimento ao Público</h4>
-                            <p class="course-description">Técnicas e boas práticas para o atendimento presencial e digital.</p>
-                            <div class="accessibility-tags">
-                                <span class="tag tag-libras"><i class="fas fa-sign-language"></i> Libras</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-                <div class="service-card" id="news-card">
-                    <h3><i class="fas fa-newspaper"></i> Notícias da Cidade</h3>
-                    <p>Fique por dentro do que acontece em Rio Verde.</p>
-                    <div class="news-list">
-                        <div class="news-item">
-                            <h4>Prefeitura inicia nova fase de recapeamento</h4>
-                            <p class="news-summary">Obras de infraestrutura avançam nos bairros X e Y, melhorando a mobilidade urbana...</p>
-                            <div class="accessibility-level level-high">
-                                <i class="fas fa-universal-access"></i> Acessibilidade: Alta (Libras + Legendas)
-                            </div>
-                        </div>
-                        <div class="news-item">
-                            <h4>Festival de Gastronomia anunciado para agosto</h4>
-                            <p class="news-summary">Evento ocorrerá na próxima semana no Parque Central, com entrada franca...</p>
-                            <div class="accessibility-level level-medium">
-                                <i class="fas fa-universal-access"></i> Acessibilidade: Média (Legendas)
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="input-group">
+              <label for="schedule-time">Hora</label>
+              <input id="schedule-time" type="time" required />
             </div>
-            
-        </main>
+            <div class="input-group">
+              <label for="schedule-type">Tipo de atendimento</label>
+              <select id="schedule-type" required>
+                <option value="">Selecione</option>
+                <option>Saúde</option>
+                <option>Educação</option>
+                <option>Serviços sociais</option>
+              </select>
+            </div>
+          </div>
 
-        </div> 
+          <div class="input-group">
+            <label for="schedule-notes">Observações</label>
+            <textarea id="schedule-notes"></textarea>
+          </div>
 
-    <script src="usuario.js"></script>
+          <button class="btn btn-primary" type="submit">Solicitar</button>
+        </form>
+      </article>
+    </section>
+
+    <section id="page-info" class="page" aria-labelledby="info-title">
+      <h2 id="info-title">Informativos</h2>
+
+      <article class="service-card">
+        <h3><i class="fa fa-graduation-cap" aria-hidden="true"></i> Cursos da Prefeitura</h3>
+        <div class="course-list">
+          <div class="course-item">
+            <h4>Informática Básica</h4>
+            <p class="course-description">Aprenda a usar o computador, internet e ferramentas de escritório.</p>
+            <div class="accessibility-tags">
+              <span class="tag tag-libras"><i class="fa fa-sign-language" aria-hidden="true"></i> Libras</span>
+              <span class="tag tag-audio"><i class="fa fa-closed-captioning" aria-hidden="true"></i> Legendas</span>
+            </div>
+          </div>
+          <div class="course-item">
+            <h4>Atendimento ao Público</h4>
+            <p class="course-description">Técnicas e boas práticas para o atendimento presencial e digital.</p>
+            <div class="accessibility-tags">
+              <span class="tag tag-audio"><i class="fa fa-volume-up" aria-hidden="true"></i> Áudio-guia</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="service-card">
+        <h3><i class="fa fa-newspaper" aria-hidden="true"></i> Notícias da Cidade</h3>
+        <div class="news-list">
+          <div class="news-item">
+            <h4>Prefeitura inicia nova fase de recapeamento</h4>
+            <p class="news-summary">Obras de infraestrutura avançam, melhorando a mobilidade urbana.</p>
+            <span class="accessibility-level level-high">Acessibilidade: Alta</span>
+          </div>
+          <div class="news-item">
+            <h4>Festival de Gastronomia anunciado</h4>
+            <p class="news-summary">Evento no Parque Central com entrada franca.</p>
+            <span class="accessibility-level level-medium">Acessibilidade: Média</span>
+          </div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    <p class="container">Prefeitura Municipal • Portal Acessível</p>
+  </footer>
+
+  <script src="usuario.js" defer></script>
 </body>
 </html>

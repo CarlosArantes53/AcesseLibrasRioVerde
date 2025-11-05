@@ -688,3 +688,69 @@ footer p { margin: 0; color: var(--text-light); font-size: 0.9rem; }
 .accessibility-controls button:hover {
     background-color: var(--neutral-gray);
 }
+/* Acessibilidade: elementos apenas visuais para leitores de tela */
+.visually-hidden,
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+
+/* Foco visível para todos os interativos */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #ffbf47;
+  outline-offset: 2px;
+}
+
+/* Botões estilo link (usados nos toggles) */
+.linklike {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--primary-blue);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Reduzir movimento quando preferido */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Alto contraste: reforçar bordas e cores-chave */
+@media (prefers-contrast: more) {
+  .btn,
+  .btn-auth,
+  .btn-primary,
+  .nav-button-header {
+    border: 2px solid currentColor;
+  }
+  .service-card,
+  .auth-box,
+  .chat-window,
+  input, select, textarea {
+    border: 2px solid #333;
+    background: #fff;
+  }
+}
+
+/* Região de chat como log acessível */
+#chat-window[role="log"] {
+  padding-top: 18px;
+}

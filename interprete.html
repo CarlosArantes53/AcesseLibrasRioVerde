@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Intérprete - Acesse Libras</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    
+    <div id="interpreter-app-page">
+        <header>
+            <div class="container header-content">
+                <div class="logo-title">
+                    <img src="logo.png" alt="Brasão Rio Verde" class="logo">
+                    <h1>Portal do Intérprete</h1>
+                </div>
+                <div class="status-badge">
+                    <span class="status-dot"></span>
+                    <span>Online</span>
+                </div>
+                <button id="btn-interpreter-logout" class="btn-logout">Sair</button> 
+            </div>
+        </header>
+
+        <main class="container main-layout">
+
+            <section class="call-panel">
+                <h2>Painel de Chamada</h2>
+                
+                <div id="status-waiting" class="call-status-box">
+                    <i class="fas fa-headset"></i>
+                    <p>Aguardando chamadas...</p>
+                    <span class="interpreter-name">Intérprete: <strong>Neo</strong></span>
+                </div>
+
+                <div id="status-incoming" class="call-status-box incoming hidden">
+                    <i class="fas fa-phone-alt ringing"></i>
+                    <p><strong>Nova Chamada Recebida!</strong></p>
+                    <span class="caller-id">De: Mario</span>
+                    <div class="button-group">
+                        <button id="btn-accept" class="btn btn-green">Atender</button>
+                        <button id="btn-reject" class="btn btn-red">Recusar</button>
+                    </div>
+                </div>
+
+                <div id="status-active" class="hidden">
+                    <div class="video-area">
+                        <div class="video-wrapper">
+                            <img src="https://via.placeholder.com/400x300/6c757d/ffffff?text=Usu%C3%A1rio" alt="Usuário">
+                            <span class="video-label">Usuário</span>
+                        </div>
+                        <div class="video-wrapper">
+                            <img src="https" alt="Intérprete Neo">
+                            <span class="video-label">Neo (Você)</span>
+                        </div>
+                    </div>
+                    <div class="call-info">
+                        <span>Em chamada com: Usuário</span>
+                        <span id="call-timer">00:00</span>
+                    </div>
+                    <button id="btn-end-call" class="btn btn-red btn-full">Encerrar Chamada</button>
+                </div>
+            </section>
+
+            <section class="tools-panel">
+                <div class="tool-card">
+                    <h3>Resumo e Observações</h3>
+                    <textarea id="call-notes" placeholder="Digite suas observações sobre a chamada aqui..."></textarea>
+                    <button id="btn-generate-summary" class="btn btn-secondary">Gerar Resumo (IA)</button>
+                    <div id="summary-output" class="summary-box hidden"></div>
+                </div>
+
+                <div class="tool-card">
+                    <h3>Acionar Órgãos Competentes</h3>
+                    <p>Direcione a chamada ou ligue para ajuda.</p>
+                    <div class="shortcuts-grid">
+                        <button class="btn-shortcut" data-service="SAMU (192)">
+                            <i class="fas fa-ambulance"></i> SAMU
+                        </button>
+                        <button class="btn-shortcut" data-service="Polícia (190)">
+                            <i class="fas fa-shield-alt"></i> Polícia
+                        </button>
+                        <button class="btn-shortcut" data-service="Bombeiros (193)">
+                            <i class="fas fa-fire-extinguisher"></i> Bombeiros
+                        </button>
+                        <button class="btn-shortcut" data-service="Guarda Municipal (153)">
+                            <i class="fas fa-user-shield"></i> GCM
+                        </button>
+                    </div>
+                </div>
+
+                <div class="tool-card">
+                    <h3>Serviços Úteis (Atalhos)</h3>
+                    <div class="shortcuts-grid">
+                        <button class="btn-shortcut" data-service="Endereço da Prefeitura">
+                            <i class="fas fa-building"></i> Endereços
+                        </button>
+                        <button class="btn-shortcut" data-service="Telefones Úteis da Cidade">
+                            <i class="fas fa-phone-volume"></i> Telefones
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="interpreter.js"></script>
+</body>
+</html>

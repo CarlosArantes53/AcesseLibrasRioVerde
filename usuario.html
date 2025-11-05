@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesse Libras Rio Verde</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <div id="app-page">
+        <header>
+            <div class="container header-content">
+                <div class="logo-title">
+                    <img src="logo.png" alt="Brasão Rio Verde" class="logo">
+                    <h1>Acesse Libras Rio Verde</h1>
+                </div>
+                <button id="btn-logout" class="btn-logout">Sair</button>
+            </div>
+        </header>
+
+        <main class="container">
+            <div class="welcome-message"> 
+                <h2>Olá! 🧏‍♂️🤟 Como podemos ajudar hoje?</h2> 
+            </div>
+
+            <div class="service-card" id="video-call-card">
+                <h3>Chamada de Emergência</h3>
+                
+                <div class="video-area hidden" id="video-area">
+                    <div class="video-wrapper">
+                        <video id="local-video" autoplay muted playsinline></video>
+                        <span class="video-label">Você</span>
+                    </div>
+                    <div class="video-wrapper" id="remote-video-container">
+                        <div id="call-ringing-status" class="video-placeholder ringing">
+                            <i class="fas fa-phone-alt"></i>
+                            <span>Ligando...</span>
+                            </div>
+                        <img src="neo.jpeg" id="remote-image" class="hidden" alt="Intérprete Neo">
+                        <span id="interpreter-name" class="video-label hidden"></span>
+                    </div>
+                </div>
+
+                <div id="call-status" class="call-status"></div>
+                
+                <button id="btn-call" class="btn btn-call">
+                    <span class="icon">📞</span> Chamar Intérprete
+                </button>
+            </div>
+
+            <div class="service-card" id="chat-card">
+                <h3>Chat Rápido com IA</h3>
+                <div class="chat-window" id="chat-window">
+                    <div class="message bot-message">
+                        <strong>IANA Rio Verde:</strong> Olá! Estou pronto para ajudar.
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Digite sua mensagem..." aria-label="Mensagem do chat">
+                    <button id="btn-send" class="btn btn-send" aria-label="Enviar mensagem">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="container">
+                    <p>© 2025 - Acesse Libras AI | Prefeitura de Rio Verde (GO)</p>
+            </div>
+        </footer>
+    </div> 
+
+    <script src="usuario.js"></script>
+</body>
+</html>

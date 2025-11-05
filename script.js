@@ -52,6 +52,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
+        
+        const disability = document.getElementById('register-disability').value;
+        
+        if (disability) {
+            localStorage.setItem('userDisability', disability);
+        } else {
+            localStorage.setItem('userDisability', 'none');
+        }
+
         alert("Cadastro realizado com sucesso! Faça o login.");
         registerPage.classList.add('hidden');
         loginPage.classList.remove('hidden');

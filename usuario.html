@@ -12,66 +12,202 @@
     <div id="app-page">
         <header>
             <div class="container header-content">
-                <div class="logo-title">
-                    <img src="logo.png" alt="Brasão Rio Verde" class="logo">
-                    <h1>Acesse Libras Rio Verde</h1>
+        <div class="logo-title">
+            <img src="logo.png" alt="Brasão Rio Verde" class="logo">
+            <h1>Acesse Libras Rio Verde</h1>
+        </div>
+
+        <div class="accessibility-controls">
+            <button id="btn-decrease-font" title="Diminuir Fonte" aria-label="Diminuir Fonte">A-</button>
+            <button id="btn-increase-font" title="Aumentar Fonte" aria-label="Aumentar Fonte">A+</button>
+            <button id="btn-toggle-theme" title="Alternar Tema Claro/Escuro" aria-label="Alternar Tema Claro/Escuro">
+                <i class="fas fa-moon"></i>
+            </button>
+            <button id="btn-photosensitive" title="Modo Fotossensível (Reduzir Animações)" aria-label="Modo Fotossensível">
+                <i class="fas fa-low-vision"></i>
+            </button>
+        </div>
+        <button id="btn-logout" class="btn-logout">Sair</button>
+    </div>
+            
+            <nav class="header-nav">
+                <div class="container nav-container">
+                    <button id="nav-inicio" class="nav-button-header active">
+                        <i class="fas fa-home"></i>
+                        <span>Início</span>
+                    </button>
+                    <button id="nav-servicos" class="nav-button-header">
+                        <i class="fas fa-concierge-bell"></i>
+                        <span>Serviços</span>
+                    </button>
+                    <button id="nav-informativos" class="nav-button-header">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Informativos</span>
+                    </button>
                 </div>
-                <button id="btn-logout" class="btn-logout">Sair</button>
-            </div>
+            </nav>
         </header>
 
         <main class="container">
-            <div class="welcome-message"> 
-                <h2>Olá! 🧏‍♂️🤟 Como podemos ajudar hoje?</h2> 
-            </div>
 
-            <div class="service-card" id="video-call-card">
-                <h3>Chamada de Emergência</h3>
+            <div id="page-inicio" class="page active">
                 
-                <div class="video-area hidden" id="video-area">
-                    <div class="video-wrapper">
-                        <video id="local-video" autoplay muted playsinline></video>
-                        <span class="video-label">Você</span>
-                    </div>
-                    <div class="video-wrapper" id="remote-video-container">
-                        <div id="call-ringing-status" class="video-placeholder ringing">
-                            <i class="fas fa-phone-alt"></i>
-                            <span>Ligando...</span>
+                <div class="welcome-message"> 
+                    <h2>Olá! 🧏‍♂️🤟 Como podemos ajudar hoje?</h2> 
+                </div>
+
+                <div class="service-card" id="emergency-card">
+                    <h3>Chamada de Emergência</h3>
+                    <p>Conecte-se com um intérprete de Libras agora.</p>
+
+                    <div class="video-area hidden" id="video-area">
+                        <div class="video-wrapper">
+                            <video id="local-video" autoplay muted playsinline></video>
+                            <span class="video-label">Você</span>
+                        </div>
+                        <div class="video-wrapper" id="remote-video-container">
+                            <div id="call-ringing-status" class="video-placeholder ringing">
+                                <i class="fas fa-phone-alt"></i>
+                                <span>Ligando...</span>
                             </div>
-                        <img src="neo.jpeg" id="remote-image" class="hidden" alt="Intérprete Neo">
-                        <span id="interpreter-name" class="video-label hidden"></span>
+                            <img src="neo.jpeg" id="remote-image" class="hidden" alt="Intérprete Neo">
+                            <span id="interpreter-name" class="video-label hidden"></span>
+                        </div>
                     </div>
-                </div>
 
-                <div id="call-status" class="call-status"></div>
-                
-                <button id="btn-call" class="btn btn-call">
-                    <span class="icon">📞</span> Chamar Intérprete
-                </button>
-            </div>
-
-            <div class="service-card" id="chat-card">
-                <h3>Chat Rápido com IA</h3>
-                <div class="chat-window" id="chat-window">
-                    <div class="message bot-message">
-                        <strong>IANA Rio Verde:</strong> Olá! Estou pronto para ajudar.
-                    </div>
-                </div>
-                <div class="chat-input-area">
-                    <input type="text" id="chat-input" placeholder="Digite sua mensagem..." aria-label="Mensagem do chat">
-                    <button id="btn-send" class="btn btn-send" aria-label="Enviar mensagem">
-                        <i class="fas fa-paper-plane"></i>
+                    <div id="call-status" class="call-status"></div>
+                    
+                    <button id="btn-start-call" class="btn btn-call-start">
+                        <i class="fas fa-video"></i> Chamar Intérprete
+                    </button>
+                    <button id="btn-end-call" class="btn btn-call-end hidden">
+                        <i class="fas fa-phone-slash"></i> Encerrar Chamada
                     </button>
                 </div>
+
+                <div class="service-card" id="chat-card">
+                    <h3>Chat Rápido com IA</h3>
+                    <div class="chat-window" id="chat-window">
+                        <div class="message bot-message">
+                            <strong>IDANA Rio Verde:</strong> Olá! Estou pronto para ajudar.
+                        </div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chat-input" placeholder="Digite sua mensagem..." aria-label="Mensagem do chat">
+                        <button id="btn-send" class="btn btn-send" aria-label="Enviar mensagem">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
+
+            <div id="page-servicos" class="page">
+                <h2>Serviços da Cidade</h2>
+
+                <div class="service-card" id="report-problem-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Relatar um Problema na Cidade</h3>
+                    <p>Encontrou um problema de acessibilidade? Nos informe.</p>
+                    <form id="problem-report-form">
+                        <div class="input-group">
+                            <label for="problem-type">Tipo de Problema</label>
+                            <select id="problem-type" required>
+                                <option value="">Selecione o tipo de problema...</option>
+                                <option value="rampa">Falta de Rampa de Acesso</option>
+                                <option value="interprete">Falta de Intérprete em Local Público</option>
+                                <option value="sinalizacao">Falta de Sinalização Acessível</option>
+                                <option value="buraco">Buraco na calçada/rua</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="problem-description">Descrição do Problema e Local</label>
+                            <textarea id="problem-description" rows="4" placeholder="Descreva o problema e o endereço..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Relato</button>
+                    </form>
+                </div>
+    
+                <div class="service-card" id="schedule-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Solicitação de Agenda de Intérpretes</h3>
+                    <p>Precisa de um intérprete para um compromisso?</p>
+                    <form id="schedule-form">
+                        <div class="input-group">
+                            <label for="schedule-local">Local do Atendimento</label>
+                            <input type="text" id="schedule-local" placeholder="Ex: Clínica da Vila, Fórum" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-group">
+                                <label for="schedule-date">Data</label>
+                                <input type="date" id="schedule-date" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="schedule-time-from">Horário de Início</label>
+                                <input type="time" id="schedule-time-from" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="schedule-time-to">Horário de Término</label>
+                                <input type="time" id="schedule-time-to" required>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label for="schedule-reason">Motivo da Solicitação</label>
+                            <textarea id="schedule-reason" rows="3" placeholder="Ex: Consulta médica" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Solicitar Agendamento</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="page-informativos" class="page">
+                <h2>Informativos</h2>
+                
+                <div class="service-card" id="courses-card">
+                    <h3><i class="fas fa-graduation-cap"></i> Cursos da Prefeitura</h3>
+                    <p>Capacitação profissional com acessibilidade.</p>
+                    <div class="course-list">
+                        <div class="course-item">
+                            <h4>Curso de Informática Básica</h4>
+                            <p class="course-description">Aprenda a usar o computador, internet e ferramentas de escritório.</p>
+                            <div class="accessibility-tags">
+                                <span class="tag tag-libras"><i class="fas fa-sign-language"></i> Libras</span>
+                                <span class="tag tag-audio"><i class="fas fa-audio-description"></i> Áudio Descrição</span>
+                            </div>
+                        </div>
+                        <div class="course-item">
+                            <h4>Curso de Atendimento ao Público</h4>
+                            <p class="course-description">Técnicas e boas práticas para o atendimento presencial e digital.</p>
+                            <div class="accessibility-tags">
+                                <span class="tag tag-libras"><i class="fas fa-sign-language"></i> Libras</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="service-card" id="news-card">
+                    <h3><i class="fas fa-newspaper"></i> Notícias da Cidade</h3>
+                    <p>Fique por dentro do que acontece em Rio Verde.</p>
+                    <div class="news-list">
+                        <div class="news-item">
+                            <h4>Prefeitura inicia nova fase de recapeamento</h4>
+                            <p class="news-summary">Obras de infraestrutura avançam nos bairros X e Y, melhorando a mobilidade urbana...</p>
+                            <div class="accessibility-level level-high">
+                                <i class="fas fa-universal-access"></i> Acessibilidade: Alta (Libras + Legendas)
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <h4>Festival de Gastronomia anunciado para agosto</h4>
+                            <p class="news-summary">Evento ocorrerá na próxima semana no Parque Central, com entrada franca...</p>
+                            <div class="accessibility-level level-medium">
+                                <i class="fas fa-universal-access"></i> Acessibilidade: Média (Legendas)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
         </main>
 
-        <footer>
-            <div class="container">
-                    <p>© 2025 - Acesse Libras AI | Prefeitura de Rio Verde (GO)</p>
-            </div>
-        </footer>
-    </div> 
+        </div> 
 
     <script src="usuario.js"></script>
 </body>

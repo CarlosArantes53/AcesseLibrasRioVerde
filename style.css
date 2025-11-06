@@ -1,6 +1,6 @@
 :root {
-    --primary-blue: #005a9c;
-    --primary-teal: #33c1ba;
+    --primary-blue: #198942;
+    --primary-teal: #2bdb6b;
     --primary-green: #28a745;
     --accent-red: #dc3545;
     --neutral-light: #f8f9fa;
@@ -490,8 +490,11 @@ main {
 #chat-input:focus { outline: none; border-color: var(--primary-blue); }
 .btn-send { background-color: var(--primary-blue); color: white; padding: 10px 20px; font-size: 1rem; width: auto; flex-shrink: 0; border: none; border-radius: 8px; cursor: pointer;}
 
-footer { text-align: center; padding: 20px 0; background-color: var(--neutral-white); border-top: 1px solid var(--neutral-gray); margin-top: 20px; }
-footer p { margin: 0; color: var(--text-light); font-size: 0.9rem; }
+footer { text-align: center; padding: 1px 0; background-color: #ea8024}
+footer p { margin: 0; color: var(--text-dark); font-size: 0.9rem; }
+
+body.dark-mode footer {background-color: #ea8024}
+body.dark-mode footer p {color: #e3ad7e}
 
 @media (max-width: 600px) {
     .auth-box { padding: 20px; }
@@ -648,7 +651,7 @@ footer p { margin: 0; color: var(--text-light); font-size: 0.9rem; }
 
 .tag-libras {
     background-color: #e0f0ff; 
-    color: #005a9c;
+    color: #198942;
 }
 
 .tag-audio {

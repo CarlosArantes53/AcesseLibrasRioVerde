@@ -223,6 +223,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const videoCallCard = document.getElementById('video-call-card');
     const chatCard = document.getElementById('chat-card');
     const welcomeMessage = document.querySelector('.welcome-message h2');
+    const mainContent = document.getElementById('conteudo');
+    const voiceAssistant = document.getElementById('page-voice-assistant');
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
 
     switch (userDisability) {
       case 'deaf':
@@ -231,9 +235,11 @@ document.addEventListener('DOMContentLoaded', () => {
         chatCard?.classList.remove('hidden');
         break;
       case 'blind':
-        if (welcomeMessage) welcomeMessage.textContent = 'Olá! 🎧 Como podemos ajudar hoje?';
-        videoCallCard?.classList.add('hidden');
-        chatCard?.classList.remove('hidden');
+        header.classList.add('hidden');
+        mainContent.classList.add('hidden');
+        footer.classList.add('hidden');
+        voiceAssistant.classList.add('active');
+        document.body.classList.add('voice-assistant-active');
         break;
       default:
         videoCallCard?.classList.remove('hidden');

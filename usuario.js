@@ -227,12 +227,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const voiceAssistant = document.getElementById('page-voice-assistant');
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
+    const scheduleCard = document.getElementById('schedule-card');
 
     switch (userDisability) {
       case 'deaf':
         if (welcomeMessage) welcomeMessage.textContent = 'Olá! 🧏 Como podemos ajudar hoje?';
         videoCallCard?.classList.remove('hidden');
         chatCard?.classList.remove('hidden');
+        scheduleCard?.classList.remove('hidden');
         break;
       case 'blind':
         header.classList.add('hidden');
@@ -242,7 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('voice-assistant-active');
         break;
       default:
-        videoCallCard?.classList.remove('hidden');
         chatCard?.classList.remove('hidden');
         break;
     }

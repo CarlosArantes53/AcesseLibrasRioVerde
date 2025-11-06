@@ -10,70 +10,90 @@
 <body>
     
     <div id="interpreter-app-page">
-        <header>
+        <header role="banner">
             <div class="container header-content">
                 <div class="logo-title">
-                    <img src="logo.png" alt="Brasão Rio Verde" class="logo">
+                    <img class="logo" src="logo.png" alt="Logo do Acesse • Rio Verde" />
                     <h1>Portal do Intérprete</h1>
                 </div>
-                <div class="status-badge">
-                    <span class="status-dot"></span>
-                    <span>Online</span>
+
+                <div class="accessibility-controls" aria-label="Controles de acessibilidade">
+                    <button id="btn-decrease-font" type="button" aria-label="Diminuir fonte">A-</button>
+                    <button id="btn-increase-font" type="button" aria-label="Aumentar fonte">A+</button>
+                    <button id="btn-toggle-theme" type="button" aria-label="Alternar tema">
+                        <i class="fa fa-moon" aria-hidden="true"></i><span class="sr-only">Tema</span>
+                    </button>
+                    <button id="btn-photosensitive" type="button" aria-label="Reduzir animações">RM</button>
+                    <button id="btn-interpreter-logout" class="btn-logout" type="button">Sair</button>
                 </div>
-                <button id="btn-interpreter-logout" class="btn-logout">Sair</button> 
             </div>
+
+            <nav class="header-nav" role="navigation" aria-label="Navegação principal">
+                <div class="container nav-container">
+                    <button id="nav-painel" class="nav-button-header active" type="button">
+                        <i class="fa fa-headset" aria-hidden="true"></i> Painel de Chamada
+                    </button>
+                    <button id="nav-historico" class="nav-button-header" type="button">
+                        <i class="fa fa-history" aria-hidden="true"></i> Histórico
+                    </button>
+                    <button id="nav-agenda" class="nav-button-header" type="button">
+                        <i class="fa fa-calendar" aria-hidden="true"></i> Agenda
+                    </button>
+                </div>
+            </nav>
         </header>
 
-        <main class="container main-layout">
+        <main id="conteudo" class="container" tabindex="-1">
 
-            <section class="call-panel">
-                <h2>Painel de Chamada</h2>
+            <section id="page-painel" class="page active" aria-labelledby="painel-title">
                 
-                <div id="status-waiting" class="call-status-box">
-                    <i class="fas fa-headset"></i>
-                    <p>Aguardando chamadas...</p>
-                    <span class="interpreter-name">Intérprete: <strong>Neo</strong></span>
-                </div>
-
-                <div id="status-incoming" class="call-status-box incoming hidden">
-                    <i class="fas fa-phone-alt ringing"></i>
-                    <p><strong>Nova Chamada Recebida!</strong></p>
-                    <span class="caller-id">De: Mario</span>
-                    <div class="button-group">
-                        <button id="btn-accept" class="btn btn-green">Atender</button>
-                        <button id="btn-reject" class="btn btn-red">Recusar</button>
+                <article class="service-card">
+                    <h2 id="painel-title">Painel de Chamada</h2>
+                
+                    <div id="status-waiting" class="call-status-box">
+                        <i class="fas fa-headset"></i>
+                        <p>Aguardando chamadas...</p>
+                        <span class="interpreter-name">Intérprete: <strong>Neo</strong></span>
                     </div>
-                </div>
-
-                <div id="status-active" class="hidden">
-                    <div class="video-area">
-                        <div class="video-wrapper">
-                            <img src="https://via.placeholder.com/400x300/6c757d/ffffff?text=Usu%C3%A1rio" alt="Usuário">
-                            <span class="video-label">Usuário</span>
-                        </div>
-                        <div class="video-wrapper">
-                            <img src="https" alt="Intérprete Neo">
-                            <span class="video-label">Neo (Você)</span>
+    
+                    <div id="status-incoming" class="call-status-box incoming hidden">
+                        <i class="fas fa-phone-alt ringing"></i>
+                        <p><strong>Nova Chamada Recebida!</strong></p>
+                        <span class="caller-id">De: Mario</span>
+                        <div class="button-group">
+                            <button id="btn-accept" class="btn btn-green">Atender</button>
+                            <button id="btn-reject" class="btn btn-red">Recusar</button>
                         </div>
                     </div>
-                    <div class="call-info">
-                        <span>Em chamada com: Usuário</span>
-                        <span id="call-timer">00:00</span>
+    
+                    <div id="status-active" class="hidden">
+                        <div class="video-area">
+                            <div class="video-wrapper">
+                                <img src="https://via.placeholder.com/400x300/6c757d/ffffff?text=Usu%C3%A1rio" alt="Usuário">
+                                <span class="video-label">Usuário</span>
+                            </div>
+                            <div class="video-wrapper">
+                                <img src="neo.jpeg" alt="Intérprete Neo">
+                                <span class="video-label">Neo (Você)</span>
+                            </div>
+                        </div>
+                        <div class="call-info">
+                            <span>Em chamada com: Usuário</span>
+                            <span id="call-timer">00:00</span>
+                        </div>
+                        <button id="btn-end-call" class="btn btn-red btn-full">Encerrar Chamada</button>
                     </div>
-                    <button id="btn-end-call" class="btn btn-red btn-full">Encerrar Chamada</button>
-                </div>
-            </section>
+                </article>
 
-            <section class="tools-panel">
-                <div class="tool-card">
-                    <h3>Resumo e Observações</h3>
+                <article class="service-card">
+                    <h3><i class="fas fa-file-alt" aria-hidden="true"></i> Resumo e Observações</h3>
                     <textarea id="call-notes" placeholder="Digite suas observações sobre a chamada aqui..."></textarea>
-                    <button id="btn-generate-summary" class="btn btn-secondary">Gerar Resumo (IA)</button>
+                    <button id="btn-generate-summary" class="btn btn-primary">Gerar Resumo (IA)</button>
                     <div id="summary-output" class="summary-box hidden"></div>
-                </div>
+                </article>
 
-                <div class="tool-card">
-                    <h3>Acionar Órgãos Competentes</h3>
+                <article class="service-card">
+                    <h3><i class="fas fa-exclamation-triangle" aria-hidden="true"></i> Acionar Órgãos Competentes</h3>
                     <p>Direcione a chamada ou ligue para ajuda.</p>
                     <div class="shortcuts-grid">
                         <button class="btn-shortcut" data-service="SAMU (192)">
@@ -89,10 +109,10 @@
                             <i class="fas fa-user-shield"></i> GCM
                         </button>
                     </div>
-                </div>
+                </article>
 
-                <div class="tool-card">
-                    <h3>Serviços Úteis (Atalhos)</h3>
+                <article class="service-card">
+                    <h3><i class="fas fa-book" aria-hidden="true"></i> Serviços Úteis (Atalhos)</h3>
                     <div class="shortcuts-grid">
                         <button class="btn-shortcut" data-service="Endereço da Prefeitura">
                             <i class="fas fa-building"></i> Endereços
@@ -101,10 +121,129 @@
                             <i class="fas fa-phone-volume"></i> Telefones
                         </button>
                     </div>
-                </div>
+                </article>
+            </section>
+
+            <section id="page-historico" class="page" aria-labelledby="historico-title">
+                <h2 id="historico-title">Histórico de Chamadas</h2>
+
+                <article class="service-card">
+                    <h3>Hoje, 06 de Novembro</h3>
+                    <ul class="history-list">
+                        <li class="history-item">
+                            <span class="history-time">11:45</span>
+                            <i class="fas fa-video history-icon emergency"></i>
+                            <div class="history-details">
+                                <strong>Chamada de Emergência</strong>
+                                <span>Usuário: Maria Silva | Duração: 04:32</span>
+                                <span>Resumo: Encaminhado ao SAMU.</span>
+                            </div>
+                        </li>
+                        <li class="history-item">
+                            <span class="history-time">09:10</span>
+                            <i class="fas fa-calendar-check history-icon scheduled"></i>
+                            <div class="history-details">
+                                <strong>Chamada Agendada (Saúde)</strong>
+                                <span>Usuário: Janaina Costa | Duração: 15:00</span>
+                                <span>Resumo: Acompanhamento de consulta - Parque Bandeirantes.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+                
+                <article class="service-card">
+                    <h3>Ontem, 05 de Novembro</h3>
+                    <ul class="history-list">
+                        <li class="history-item">
+                            <span class="history-time">15:20</span>
+                            <i class="fas fa-question-circle history-icon info"></i>
+                            <div class="history-details">
+                                <strong>Chamada Rápida (Serviço)</strong>
+                                <span>Usuário: Amanda Pereira | Duração: 02:15</span>
+                                <span>Resumo: Informado endereço da prefeitura.</span>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
 
             </section>
+
+            <section id="page-agenda" class="page" aria-labelledby="agenda-title">
+                <h2 id="agenda-title">Agenda de Atendimentos</h2>
+                
+                <article class="service-card">
+                    <h3>Novembro 2025</h3>
+                    <div class="calendar-grid">
+                        <div class="day-header">Dom</div>
+                        <div class="day-header">Seg</div>
+                        <div class="day-header">Ter</div>
+                        <div class="day-header">Qua</div>
+                        <div class="day-header">Qui</div>
+                        <div class="day-header">Sex</div>
+                        <div class="day-header">Sáb</div>
+                        
+                        <div class="day other-month">27</div>
+                        <div class="day other-month">28</div>
+                        <div class="day other-month">29</div>
+                        <div class="day other-month">30</div>
+                        <div class="day other-month">31</div>
+                        <div class="day">1</div>
+                        <div class="day">2</div>
+                        <div class="day">3</div>
+                        <div class="day">4</div>
+                        <div class="day">5</div>
+                        <div class="day">5</div>
+                        <div class="day">6</div> 
+                        <div class="day">7</div>
+                        <div class="day">8</div>
+                        <div class="day">9</div>
+                        <div class="day has-event">10</div> <div class="day">11</div>
+                        <div class="day">12</div>
+                        <div class="day">13</div>
+                        <div class="day">14</div>
+                        <div class="day">15</div>
+                        <div class="day">16</div>
+                        <div class="day">17</div>
+                        <div class="day">18</div>
+                        <div class="day has-event">19</div> <div class="day">20</div>
+                        <div class="day">21</div>
+                        <div class="day">22</div>
+                        <div class="day">23</div>
+                        <div class="day">24</div>
+                        <div class="day">25</div>
+                        <div class="day">26</div>
+                        <div class="day">27</div>
+                        <div class="day">28</div>
+                        <div class="day">29</div>
+                        <div class="day">30</div>
+                    </div>
+                </article>
+
+                <article class="service-card">
+                    <h3>Agendamentos Futuros</h3>
+                    <ul class="agenda-list">
+                        <li class="agenda-item">
+                            <strong class="agenda-date">10/NOV</strong>
+                            <div class="agenda-details">
+                                <strong>14:00 - Atendimento UBS (Saúde)</strong>
+                                <span>Usuário: Marcos Almeida | Local: UBS Anhanguera - 613, R. Piauí</span>
+                            </div>
+                        </li>
+                        <li class="agenda-item">
+                            <strong class="agenda-date">19/NOV</strong>
+                            <div class="agenda-details">
+                                <strong>09:30 - Atendimento (Educação)</strong>
+                                <span>Usuário: Luana Martins | Local: Colégio Estadual Frederico Jayme</span>
+                            </div>
+                        </li>
+                    </ul>
+                </article>
+            </section>
         </main>
+
+        <footer role="contentinfo">
+            <p class="container">Acesse • Rio Verde</p>
+        </footer>
     </div>
 
     <script src="interpreter.js"></script>

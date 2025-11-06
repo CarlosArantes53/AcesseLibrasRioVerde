@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- SELETORES EXISTENTES ---
     const btnInterpreterLogout = document.getElementById('btn-interpreter-logout');
 
     const statusWaiting = document.getElementById('status-waiting');
@@ -19,6 +20,76 @@ document.addEventListener('DOMContentLoaded', () => {
     let callTimerInterval = null;
     let secondsInCall = 0;
 
+    // --- CÓDIGO NOVO (DE USUARIO.JS) ---
+    const navButtons = document.querySelectorAll('.nav-button-header');
+    const pages = document.querySelectorAll('.page');
+    
+    // Acessibilidade header
+    const btnIncreaseFont = document.getElementById('btn-increase-font');
+    const btnDecreaseFont = document.getElementById('btn-decrease-font');
+    const btnToggleTheme = document.getElementById('btn-toggle-theme');
+    const btnPhotosensitive = document.getElementById('btn-photosensitive');
+
+    // Inicializa a navegação
+    initNavigation();
+
+    function initNavigation() {
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // O ID do botão (ex: "nav-painel") corresponde ao ID da página (ex: "page-painel")
+                const targetPageId = button.id.replace('nav-', 'page-');
+                showPage(targetPageId);
+                navButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // Move o foco para a seção ativa
+                const active = document.getElementById(targetPageId);
+                active?.setAttribute('tabindex', '-1');
+                active?.focus();
+            });
+        });
+    }
+
+    function showPage(pageId) {
+        pages.forEach(page => {
+            page.classList.remove('active');
+            if (page.id === pageId) page.classList.add('active');
+        });
+    }
+
+    // Controles de acessibilidade
+    function changeFontSize(direction) {
+        const bodyStyle = window.getComputedStyle(document.body);
+        let currentSize = parseFloat(bodyStyle.fontSize);
+        if (direction === 'increase') {
+            document.body.style.fontSize = (currentSize * 1.1) + 'px';
+        } else if (direction === 'decrease') {
+            document.body.style.fontSize = (currentSize * 0.9) + 'px';
+        }
+    }
+    btnIncreaseFont?.addEventListener('click', () => changeFontSize('increase'));
+    btnDecreaseFont?.addEventListener('click', () => changeFontSize('decrease'));
+
+    if (btnToggleTheme) {
+        btnToggleTheme.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = btnToggleTheme.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon?.classList.remove('fa-moon');
+                icon?.classList.add('fa-sun');
+            } else {
+                icon?.classList.remove('fa-sun');
+                icon?.classList.add('fa-moon');
+            }
+        });
+    }
+
+    btnPhotosensitive?.addEventListener('click', () => {
+        document.body.classList.toggle('photosensitive-mode');
+    });
+    // --- FIM DO CÓDIGO NOVO ---
+
+
+    // --- CÓDIGO EXISTENTE ---
     btnInterpreterLogout.addEventListener('click', () => {
         if (callTimerInterval) {
             stopCallTimer();
@@ -26,11 +97,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.location.href = 'index.html'; 
     });
 
-    setTimeout(() => {
-        if (statusWaiting && !statusWaiting.classList.contains('hidden')) {
-            showIncomingCall();
-        }
-    }, 5000);
+    // Simulação de chamada removida para focar na funcionalidade de clique
+    // setTimeout(() => {
+    //     if (statusWaiting && !statusWaiting.classList.contains('hidden')) {
+    //         showIncomingCall();
+    //     }
+    // }, 5000);
     
     function showIncomingCall() {
         statusWaiting.classList.add('hidden');
@@ -107,4 +179,9 @@ document.addEventListener('DOMContentLoaded', () => {
         clearInterval(callTimerInterval);
         callTimerInterval = null;
     }
+
+    statusWaiting.addEventListener('click', () => {
+        console.log("Chamada...");
+        showIncomingCall();
+    });
 });
